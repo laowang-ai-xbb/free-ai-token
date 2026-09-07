@@ -1,6 +1,10 @@
 ---
 name: free-ai-token
-description: "Global AI money-saver: find FREE or cheap LLM API tokens/keys, free AI apps (no key), and low-cost AI memberships (region deals for Claude/OpenAI/Gemini; Turkey/India/Argentina subscriptions); auto-registers accounts and wires keys into agents (Cherry Studio/Chatbox/NextChat/LobeChat/Dify); scheduled scans via /deals /scan. 免费token · 白嫖AI · 低价API · 便宜AI会员 · 怎么免费用AI · 免费AI产品 · cheapest API · free API key · AI membership deal · cheap AI subscription. NOT for general AI pricing questions or ordinary chat/translation."
+display_name: "免费 AI - 全球 AI 省钱助手"
+display_name_en: "Free AI Token — Global AI Money Saver"
+description: "Global AI money-saver: find FREE or cheap LLM API tokens/keys, free AI apps (no key), and low-cost AI memberships (region deals for Claude/OpenAI/Gemini; Turkey/India/Argentina subscriptions); auto-registers accounts and wires keys into agents (Cherry Studio/Chatbox/opencode/codex/Dify); scheduled scans via /deals /scan. 免费token · 白嫖AI · 低价API · 便宜AI会员 · 怎么免费用AI · 免费AI产品 · cheapest API · free API key · AI membership deal · cheap AI subscription. NOT for general AI pricing questions or ordinary chat/translation."
+description_zh: "全球 AI 省钱工具：帮你获取免费或低价的 AI大模型 API token(词元)/Key（秘钥）、免费 AI 产品以及低价 AI 会员（含 Claude/OpenAI/Gemini 区域价、土耳其/印度/阿根廷订阅），自动注册账号并把 Key 接入主流客户端（Work Buddy/千问办公/豆包办公/Trae/Codex/Dify等），支持 /deals /scan 定时扫描。触发词：免费token · 白嫖AI · 低价API · 便宜AI会员 · 怎么免费用AI · 免费AI产品。NOT for：通用 AI 定价咨询、日常聊天/翻译。"
+description_en: "Global AI money-saver: find FREE or cheap LLM API tokens/keys, free AI apps (no key), and low-cost AI memberships (region deals for Claude/OpenAI/Gemini; Turkey/India/Argentina subscriptions); auto-registers accounts and wires keys into agents (Cherry Studio/Chatbox/NextChat/LobeChat/Dify); scheduled scans via /deals /scan. NOT for general AI pricing questions or ordinary chat/translation."
 version: "2.9.5"
 ---
 
