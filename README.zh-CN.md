@@ -3,7 +3,7 @@
 # 🪙 free-ai-token
 
 **全球 AI 省钱管家 —— 以 Agent 技能（Skill）的形式。**
-帮你找到**免费的 AI API token、免登录即用的免费 AI 产品、最划算的 AI 会员**（含土耳其/阿根廷等区域价），中立评分，端到端代办到位。
+帮你找到**免费的 AI API token、免费 AI 产品、最划算的 AI 会员**（含土耳其/阿根廷等区域价），中立评分，端到端代办到位。
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
