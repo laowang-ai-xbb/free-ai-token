@@ -7,9 +7,11 @@ Find **free AI API tokens, free-to-use AI products, and the cheapest AI membersh
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-![version](https://img.shields.io/badge/version-2.9.5-blue) ![license](https://img.shields.io/badge/license-MIT-green) ![format](https://img.shields.io/badge/Agent%20Skills-SKILL.md-orange) ![i18n](https://img.shields.io/badge/i18n-en%20%7C%20zh-success)
+![version](https://img.shields.io/badge/version-2.9.6-blue) ![license](https://img.shields.io/badge/license-MIT-green) ![format](https://img.shields.io/badge/Agent%20Skills-SKILL.md-orange) ![i18n](https://img.shields.io/badge/i18n-en%20%7C%20zh-success) ![GitHub stars](https://img.shields.io/github/stars/laowang-ai-xbb/free-ai-token?style=social)
 
 An [Agent Skill](https://agentskills.io) for: *free AI API keys · cheapest LLM API · free-tier comparison · Claude / OpenAI / Gemini free tier · AI membership region deals (Turkey / India / Argentina) · 免费token · 白嫖AI · 低价API · 便宜AI会员*
+
+⭐ **Like it? [Star the repo](https://github.com/laowang-ai-xbb/free-ai-token/) — that's the only fuel this skill runs on.**
 
 <!-- TODO: replace with a real demo GIF (≤30s) -->
 <!-- ![demo](assets/demo.gif) -->
@@ -194,6 +196,7 @@ Feature requests → [open an issue](../../issues). PRs welcome — for changes 
 
 I build practical Agent Skills that make AI cheaper and easier to use. If this skill saved you money or time, a ⭐ is the best fuel — and issues/PRs are very welcome.
 
+- 🔗 **Repo:** [github.com/laowang-ai-xbb/free-ai-token](https://github.com/laowang-ai-xbb/free-ai-token/) — single source of truth (see [`assets/branding.md`](./assets/branding.md))
 - 📮 Feedback: [Issues](../../issues) · Discussions welcome
 - 🔄 Follow the project: click **Watch** to get deal-scan updates
 - 📕 Chinese tutorials & real-world cases: 小红书 @老王ai瞎bb

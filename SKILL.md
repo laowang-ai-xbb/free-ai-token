@@ -1,16 +1,12 @@
 ---
 name: free-ai-token
-display_name: "免费 AI - 全球 AI 省钱助手"
-display_name_en: "Free AI Token — Global AI Money Saver"
-description: "Global AI money-saver: find FREE or cheap LLM API tokens/keys, free AI apps (no key), and low-cost AI memberships (region deals for Claude/OpenAI/Gemini; Turkey/India/Argentina subscriptions); auto-registers accounts and wires keys into agents (Cherry Studio/Chatbox/opencode/codex/Dify); scheduled scans via /deals /scan. 免费token · 白嫖AI · 低价API · 便宜AI会员 · 怎么免费用AI · 免费AI产品 · cheapest API · free API key · AI membership deal · cheap AI subscription. NOT for general AI pricing questions or ordinary chat/translation."
-description_zh: "全球 AI 省钱工具：帮你获取免费或低价的 AI大模型 API token(词元)/Key（秘钥）、免费 AI 产品以及低价 AI 会员（含 Claude/OpenAI/Gemini 区域价、土耳其/印度/阿根廷订阅），自动注册账号并把 Key 接入主流客户端（Work Buddy/千问办公/豆包办公/Trae/Codex/Dify等），支持 /deals /scan 定时扫描。触发词：免费token · 白嫖AI · 低价API · 便宜AI会员 · 怎么免费用AI · 免费AI产品。NOT for：通用 AI 定价咨询、日常聊天/翻译。"
-description_en: "Global AI money-saver: find FREE or cheap LLM API tokens/keys, free AI apps (no key), and low-cost AI memberships (region deals for Claude/OpenAI/Gemini; Turkey/India/Argentina subscriptions); auto-registers accounts and wires keys into agents (Cherry Studio/Chatbox/NextChat/LobeChat/Dify); scheduled scans via /deals /scan. NOT for general AI pricing questions or ordinary chat/translation."
-version: "2.9.5"
+description: "Global AI money-saver: find FREE or cheap LLM API tokens/keys, free AI apps (no key), and low-cost AI memberships (region deals for Claude/OpenAI/Gemini; Turkey/India/Argentina subscriptions); auto-registers accounts and wires keys into agents (Cherry Studio/Chatbox/NextChat/LobeChat/Dify); scheduled scans via /deals /scan. 免费token · 白嫖AI · 低价API · 便宜AI会员 · 怎么免费用AI · 免费AI产品 · cheapest API · free API key · AI membership deal · cheap AI subscription. NOT for general AI pricing questions or ordinary chat/translation."
+version: "2.9.6"
 ---
 
 # Free AI Token — Global AI Money Saver
 
-_(v2.9.5 · updated 2026-09-07 · scenario→pick table + 6 new radar vendors · requires the 2.8.0 debt release)_
+_(v2.9.6 · updated 2026-09-08 · shortlist three seats · fixed ①②③ module order · partner bundles broadened · attribution provenance on every output · requires the 2.8.0 debt release)_
 
 ## Execution principle — 先看清，再动手 (observe before you act)
 
@@ -122,7 +118,7 @@ deals, output `{i18n:empty_result}` instead of an empty ranking.
 产品 / 不用API直接聊天" → LIGHT, **beginner persona, module ② first**
 (`ranking-template.md` §0.5); "再多找几家 / find me more options" → FULL;
 "便宜会员 / 低价订阅 / cheap memberships" → FULL focused on module ③
-(any-AI-subscription scope, incl. media & carrier bundles); "帮我买/开通 XX
+(any-AI-subscription scope, incl. media & partner bundles); "帮我买/开通 XX
 会员 / get me XX Plus cheaper" → **BUY** (`buy-membership.md`); modality
 words (画图/图片/生成视频/配音/语音/做音乐/3D) → modality hunt
 (`deal-hunting.md` §2.7).
@@ -242,8 +238,9 @@ quota resets at the trust peak.
 ## Membership purchase (BUY mode)
 
 `buy-membership.md` — the graded purchase flow for core function ③: shelf
-routing (official discount 🟢 → carrier bundle → cross-region 🟡 → reseller
-🔴), ONE batched intake (product / account region / payment means / device),
+routing (official discount 🟢 → partner bundle 🟢/🟡 → cross-region 🟡 →
+reseller 🔴), ONE batched intake (product / account region / payment means /
+device),
 expectation declaration with the **price restatement** and the buy-version
 three promises, gears L3→L0 with **payment never automated**, the worst-case
 line ({i18n:worst_case}) before any cross-region step, and the
@@ -287,4 +284,5 @@ last snapshot in `vendor-cache.md` when one exists; without a baseline, say
 | Ranking/report templates (compact & full) | `references/ranking-template.md` |
 | One-page HTML report skeleton | `assets/templates/full-report.html` |
 | Ready-to-import config template | `assets/templates/openai-compatible-config.md` |
+| Attribution provenance (author / repo / license / star CTA) — single source of truth, every output | `assets/branding.md` |
 | Writable cache & preferences (persistence ladder) | `assets/vendor-cache.md` |

@@ -3,6 +3,69 @@
 One line per rule change: date — event — product. Case IDs (N16, the
 2026-09-05 defect) referenced by other files resolve here.
 
+## 2.9.6 — 2026-09-08 (provenance + rendering-purity release)
+
+- **Attribution provenance (Wave 3).** New `assets/branding.md` is the
+  single source of truth for author / repo URL / license / star CTA. The
+  HTML template's footer adds an attribution block filled from that file
+  (`{i18n:author_credit}` + `{i18n:repo_cta}` → `{{repo_url}}`); the
+  plain-text close adds a one-line §8.2 attribution. Author = @老王AI瞎bb
+  (小红书); repo = `https://github.com/laowang-ai-xbb/free-ai-token/`;
+  license = MIT. Every output now carries provenance when shared or
+  screenshotted — the v2.9.5 audit's "无作者署名" finding resolved. SKILL.md
+  version bumped to 2.9.6; resource index gains branding.md.
+- **Shortlist three seats (Wave 2 — problem 1).** §1.1 rewritten: the
+  shortlist is now three seats (one API · one product · one membership),
+  fixed shape, persona shapes ORDER and WORDING only, never PRESENCE.
+  Empty seats render a one-line honest note (`{i18n:empty_member_seat}`),
+  never a silent fill. New i18n: `form_chip_api` / `form_chip_app` /
+  `form_chip_member`; the nav chip renamed to "本周精选" / "This week's
+  picks" to match the new shortlist title wording.
+- **Module render order fixed ①→②→③ in FULL (Wave 2 — problem 2).**
+  §0.5 rule rewritten: numbered modules always render in ID order; persona
+  care moves to the hero / shortlist order / module-② sec-sub / nav.
+  LIGHT plain-text chat output (unnumbered) keeps the persona order.
+  The "② before ①" cognitive dissonance is gone.
+- **Module ③ shelf 2 broadened to partner bundles (Wave 2 — problem 3).**
+  i18n `shelf_bundle` = "伙伴权益（运营商 / 银行 / 支付 / 终端）" / en =
+  "Partner bundles (carrier / bank / payment / device)". `vendor-registry.md`
+  C6 adds five sub-rows for partner types (carriers · bank credit-card
+  perks · payment-platform campaigns · device makers · broadband/retail
+  memberships). `discovery-sources.md` adds EN + CN partner-bundle radar
+  queries. `buy-membership.md` §0.1 shelf routing updated; SKILL.md BUY
+  mode wording and natural-language trigger wording sync.
+- **P0 contract enforcement (Wave 1).** New mechanical ★ items in the
+  pre-delivery checklist (§7) and 5 new golden cases S15–S20 in
+  `self-check.md`:
+  - S15 hero KPI == Σ of module counts (the v2.9.5 "23 vs 25" defect).
+  - S16 no braces leak in user-facing output (the "{合规/封号/退款}"
+    defect — slot values substitute CLEAN, no braces).
+  - S17 global card numbering 1..N across modules (the v2.9.5 "回复编号 1–6"
+    three-modules-all-start-at-1 ambiguity).
+  - S18 data-nocard attribute must match the visible chip (the v2.9.5
+    module-②③ missing-chip defect) — the attribute is renamed from the
+    ambiguous `data-card` to `data-nocard` (yes = no credit card needed)
+    to remove all reading-ambiguity; template filter JS, comment, and
+    run-contract doc all updated.
+  - S19 reach no-tag rule: region-unknown + no live evidence → no reach
+    pill, never the improvised "可能需要工具" / "可达性未验证" euphemism
+    (which the no-tag rule already forbids — S19 makes the rejection
+    explicit and adds a golden case).
+  - S20 attribution provenance on every output.
+- **Other rendering hardening (also ★ items).** Third-party price trackers
+  may never appear as a clickable element (no `<a>`, no `<button>`-styled
+  ghost CTA — the v2.9.5 subprice.org / opentherank.com defect); template
+  adds a `.srcref` plain-text style for "参考来源" notes. Radar finds
+  without a registry official entry render as plain name + textual access
+  path (the v2.9.5 stdaily.com-as-CTA defect). Card rank numbers are
+  global across modules. Display-level dates are day-level
+  (YYYY-MM-DD); month/year-only evidence is flagged. Module-end `note`
+  blocks obey the same freshness contract as cards (no numbers without
+  an as-of date).
+- No new files except `assets/branding.md`; no schema change. S1–S14
+  acceptance items updated to match (S2 fixed-order rule, S9 link
+  whitelist hardening, S12 form-blending guard referencing §1.1 rule 7).
+
 ## 2.9.5 — 2026-09-07 (scenario→pick table + radar additions from competitive scan)
 
 - ranking-template §1.2 scenario→pick table (pattern borrowed from awesome-free-llm-apis' decision table, rebuilt for three-module/persona architecture): intake phrases → module + registry classes = HUNTING ORDER only; C-IDs stay internal, §1.1/best_pick rules unchanged, no-row default = mode router.

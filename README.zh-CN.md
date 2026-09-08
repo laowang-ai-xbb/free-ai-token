@@ -3,13 +3,15 @@
 # 🪙 free-ai-token
 
 **全球 AI 省钱管家 —— 以 Agent 技能（Skill）的形式。**
-帮你找到**免费的 AI API token、免费 AI 产品、最划算的 AI 会员**（含土耳其/阿根廷等区域价），中立评分，端到端代办到位。
+帮你找到**免费的 AI API token、免登录即用的免费 AI 产品、最划算的 AI 会员**（含土耳其/阿根廷等区域价），中立评分，端到端代办到位。
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-![version](https://img.shields.io/badge/version-2.9.5-blue) ![license](https://img.shields.io/badge/license-MIT-green) ![format](https://img.shields.io/badge/Agent%20Skills-SKILL.md-orange) ![i18n](https://img.shields.io/badge/i18n-en%20%7C%20zh-success)
+![version](https://img.shields.io/badge/version-2.9.6-blue) ![license](https://img.shields.io/badge/license-MIT-green) ![format](https://img.shields.io/badge/Agent%20Skills-SKILL.md-orange) ![i18n](https://img.shields.io/badge/i18n-en%20%7C%20zh-success) ![GitHub stars](https://img.shields.io/github/stars/laowang-ai-xbb/free-ai-token?style=social)
 
 一个 [Agent Skill](https://agentskills.io) 开放标准技能：*免费token · 白嫖AI · 低价API · 便宜AI会员 · 免费 AI 产品 · 怎么免费用AI · 区域价 · Claude / OpenAI / Gemini 免费额度 · free AI API · cheapest LLM API · agent skill*
+
+⭐ **觉得有用？去 [GitHub 仓库](https://github.com/laowang-ai-xbb/free-ai-token/) 点个 ⭐——这就是这个 skill 唯一的燃料。**
 
 <!-- TODO: 替换为真实演示 GIF（30 秒以内） -->
 <!-- ![demo](assets/demo.gif) -->
@@ -194,6 +196,7 @@ version: "2.9.5"
 
 我做实用的 Agent 技能，让 AI 用起来更便宜、更省心。如果这个技能帮你省了钱或时间，一个 ⭐ 就是最好的燃料——issue 和 PR 也非常欢迎。
 
+- 🔗 **仓库：** [github.com/laowang-ai-xbb/free-ai-token](https://github.com/laowang-ai-xbb/free-ai-token/) — 单一事实源（见 [`assets/branding.md`](./assets/branding.md)）
 - 📮 反馈：[Issues](../../issues) · 欢迎开 Discussions
 - 🔄 关注更新：点 **Watch** 即可收到优惠扫描动态
 - 📕 中文教程与实战案例：小红书 @老王ai瞎bb
