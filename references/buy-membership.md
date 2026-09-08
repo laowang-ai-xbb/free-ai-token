@@ -39,7 +39,7 @@ Decide FIRST; it determines the whole path (shelves defined in
 | Shelf | Tier | Path |
 |---|---|---|
 | Official discount (education / annual / first-year / promo window) | 🟢 | Straight to the official buy page; verify the discount is still live this run |
-| Carrier / bundle (e.g. SoftBank × Perplexity) | 🟢/🟡 | Eligibility check first (plan / region / new-customer) |
+| Partner bundle (v2.9.6) — telecom carrier · bank credit-card perk · payment-platform campaign · device maker · broadband / retail-membership (e.g. SoftBank × Perplexity · 招行积分换 AI 会员 · 支付宝活动送 · 厂商首月赠) | 🟢/🟡 | Eligibility check first (plan / region / payment means / new-customer / device-serial / tier) — **partner type varies, the discipline is identical** |
 | Cross-region price (self-service) | 🟡 | §2 below — worst-case line BEFORE steps |
 | Reseller / 代充 middleman | 🔴 | Risks described, no steps; licensed resellers only, and only with the risk banner |
 

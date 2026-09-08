@@ -27,6 +27,12 @@ English (parallel):
 - `artificial analysis cheapest models {year}`
 - `telecom cloud free LLM credits` · `operator cloud AI free quota`
 - `AI coding agent free models {year}` (Copilot Free / Windsurf / Trae class)
+- **Partner-bundle radar (v2.9.6) — Module ③ shelf 2**:
+  - `bank credit card AI membership perk {year}` (招行/平安/中信 积分兑换 AI 会员 + global issuers)
+  - `Alipay / WeChat Pay / UnionPay AI membership promotion {year}` (支付宝/微信/云闪付 活动)
+  - `device maker AI membership free trial {year}` (手机/PC 厂商 首月赠 AI 会员)
+  - `broadband / IPTV AI perk {year}` · `retail membership AI benefit {year}` (京东PLUS / 88VIP / 山姆)
+  - `carrier AI membership bundle {year}` (SoftBank / T-Mobile / NTT / 中国移动 / 联通 / 电信)
 
 For China-relevant:
 - `新的免费大模型API 平台 {year}`
@@ -36,6 +42,13 @@ For China-relevant:
 - `魔搭 新模型 免费调用`
 - `新 AI 编程工具 免费模型额度`
 - `大模型 发布 免费开放 {month}`
+- **Partner-bundle radar (CN, v2.9.6) — Module ③ shelf 2**:
+  - `银行 信用卡 AI会员 积分兑换 权益 {year}`（招行 / 平安 / 中信 / 交行 / 建行 / 工商）
+  - `支付宝 / 微信支付 / 云闪付 / 银联 AI 活动 送会员 {year}`
+  - `手机厂商 AI 会员 赠送 首月 {year}`（华为 / 小米 / OPPO / vivo / 荣耀 / 三星 / Apple Intelligence）
+  - `PC 厂商 AI 套件 预装 权益 {year}`（联想 / 惠普 / 戴尔 / 华为 / 苹果）
+  - `宽带 / IPTV AI 权益 捆绑 {year}`（移动 / 电信 / 联通 / 长城宽带 / 鹏博士）
+  - `京东PLUS / 88VIP / 山姆 会员 AI 福利 兑换 {year}`
 
 Launch/curation channels to check (nine posts):
 - Hacker News ("Show HN" + "Ask HN: cheap LLM api")

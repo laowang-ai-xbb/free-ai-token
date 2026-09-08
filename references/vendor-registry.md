@@ -143,8 +143,10 @@ Free inference credits from hardware vendors + hyperscaler clouds.
 Scope: **any AI subscription** — chat, image, video, audio, music, 3D.
 Render order follows the three shelves of `ranking-template.md` §2 module ③:
 **official discounts first** (education / annual / first-year / promo — see
-the "Verify each run" column), **carrier bundles second**, **cross-region
-prices last** (🟡, banner + worst-case line before any steps).
+the "Verify each run" column), **partner bundles second** (carriers, banks,
+payment platforms, device makers, broadband / retail memberships — see the
+sub-rows below), **cross-region prices last** (🟡, banner + worst-case
+line before any steps).
 
 **Official-link whitelist (module ③ CTAs — the only linkable domains):**
 ChatGPT Plus/Pro → chatgpt.com · Claude Pro/Max → claude.ai · Gemini
@@ -157,7 +159,12 @@ ElevenLabs → elevenlabs.io · NotebookLM+ → notebooklm.google.com ·
 | Product | Owner | Verify each run |
 |---|---|---|
 | ChatGPT Plus/Pro · Copilot Pro · Claude Pro/Max · Gemini Advanced · Perplexity Pro · Midjourney · NotebookLM+ · Suno · Kling/可灵/即梦 · ElevenLabs | respective majors / known startups | official price · education/first-year/annual discounts · region-price spread + ToS stance (🟡/🔴, banner mandatory) |
-| Carrier-bundled AI memberships (e.g. SoftBank × Perplexity Pro) | telecom carriers × AI vendors | bundle alive? eligibility (plan/region)? effective cost? |
+| **Partner bundles** (any partner offering AI membership as a perk — shelf 2). Sub-rows below. | various | partner eligibility (plan / region / new-customer) + effective cost + end-date — re-verify every run; bundles expire silently |
+| Carrier-bundled AI memberships (e.g. SoftBank × Perplexity Pro · 中国移动 晓伴 MoMA × 多家国产大模型 · 中国联通 千亿词元 派送 · NTT × 各家 · T-Mobile perks) | telecom carriers × AI vendors | bundle alive? eligibility (plan/region)? effective cost? end-date? |
+| Bank credit-card AI perks (e.g. 招行/平安/中信/建行/交行 信用卡积分兑换/首绑礼/月度权益) | major Chinese banks + global issuers | perk alive? which AI membership? points cost or threshold? region? |
+| Payment-platform AI campaigns (e.g. 支付宝 活动送 AI 会员 · 微信支付 立减/抽奖 · 云闪付 / 银联 活动 · PayPal / Stripe partner promos) | payment platforms | activity alive? who qualifies? which AI product? end-date? |
+| Device-maker AI perks (e.g. 手机厂商 预装/首月赠 AI 会员 · PC 厂商 AI 套件 · 平板/手表 联动权益) | device makers | eligibility (new device / serial / registration)? free trial length? model support? |
+| Broadband / IPTV / retail-membership AI perks (e.g. 宽带/iptv 捆绑 AI 权益 · 京东PLUS/88VIP/山姆 会员 AI 福利) | broadband + retail memberships | perk alive? tier requirement? region? which AI product? |
 
 ### C7. Free AI products — sign in and use, no API key (module ②)
 

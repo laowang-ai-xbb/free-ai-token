@@ -74,8 +74,22 @@ endpoint vocabulary ("which Claude is cheapest", "Claude 怎么便宜买") stays
 comparison/quota/endpoint/model-ID vocabulary triggers expert. When in doubt,
 render beginner and append one line: "想按模型/价格细比？回复 /pro".（"Want a
 model-level comparison? Reply /pro."）
-**Module order follows the persona:** beginner → ② 免费 AI 产品 → ① API →
-③ 会员 (the no-key path leads); expert → ① → ② → ③.
+**Module order — numbering discipline (v2.9.6):**
+- **FULL three-module output (numbered modules, the standard artifact):**
+  modules render in **FIXED order ① → ② → ③** — always. The ①②③ are
+  **stable module IDs** (`SKILL.md`: "one meaning in every file") and
+  numbered sections must read in ID order, otherwise readers see "Module ②"
+  before "Module ①" and the numbered contract breaks. **Persona does NOT
+  reorder modules in FULL output.** Persona care moves to four other
+  surfaces (none of which disturb the numbered order):
+  1. **Hero best_pick** (§2) — beginner still gets a no-key best pick on top.
+  2. **Shortlist order** (§1.1) — beginner ②→①→③, expert ①→②→③.
+  3. **Module ② sec-sub lead-in** — "不想折腾，从这一节开始" type line for
+     beginner, no module reorder.
+  4. **Nav chips** — emphasis on the recommended entry point.
+- **LIGHT plain-text chat output (unnumbered, three-line cards):** persona
+  order still applies — beginner ②→①→③, expert ①→②→③ — because there is
+  no numbered section to break.
 
 ---
 
@@ -124,76 +138,63 @@ disclosure line (§8.1)**.
 
 ---
 
-## 1.1 Shortlist — persona-conditional, delivery-form exact
+## 1.1 Shortlist — three seats, one per delivery form (v2.9.6)
 
-Renders in LIGHT and FULL before any cards. **Which shortlist depends on the
-persona (§0.5):**
+The shortlist is the page's most-trusted slot: first content block, first
+nav chip, sits next to the best_pick hero. It must show the **full breadth
+of the skill's three delivery forms** (① API · ② product · ③ membership) —
+not just one form, however strong. Persona shapes the *order* and *wording*
+of the three seats, never their *presence* or *count*.
 
-**Expert persona → "free strong models"** (what to use, before where to get
-it):
+**Three seats — each renders a different delivery form:**
 
-```
-{i18n:shortlist_title}
-1) {model} — {one-line strength} · {i18n:get_key}: {free channel} · {badge}
-2) …   (3–5 lines total)
-```
+| Seat | Delivery form | Verb | Form chip | Empty-handling |
+|---|---|---|---|---|
+| A | ① API (free / low-cost key) | {i18n:get_key} | {i18n:form_chip_api} | drop the seat, render a one-line "本轮暂无 ① 通过交叉核实的免费 API" — never fill with a ②/③ entry silently |
+| B | ② Free product (sign-in-and-use) | {i18n:get_use} | {i18n:form_chip_app} | same: state plainly, never merge with another seat |
+| C | ③ Membership / time-boxed deal | {i18n:membership} | {i18n:form_chip_member} | render the one-line {i18n:empty_member_seat} note; never fill with a stale deal |
 
-**Beginner persona → "free entries"** (打开就能用的入口，不谈模型榜):
+**Persona-conditioned order (render order of the three seats):**
 
-```
-1) {product} — {它最擅长什么，一句人话} · {i18n:get_use}: {网页/手机App} · {badge}
-2) …   (3 lines)
-```
+- **Beginner** → B → A → C. Humanized quotas via {i18n:human_units};
+  no model-name tables; C seat only renders if a time-boxed / no-code
+  membership is found (beginners prefer the no-key path).
+- **Expert** → A → B → C. Model names + rate limits; C seat always
+  present if any membership deal cleared the bar.
 
-**Delivery-form rule (both variants, non-negotiable).** The "get" verb must
-match the evidence — {i18n:get_use} for sign-in products, {i18n:get_key} ONLY
-where an API free tier was verified for that exact platform
-(`deal-hunting.md` §1 gate + §3.3). A product whose APP is free but whose API
-is not (DeepSeek, verified 2026-09-05) must never wear get_key wording.
+**Discipline per seat (the existing §1.1 gates, applied per-seat):**
 
-Four disciplines:
-1. **Safety is the gate.** Only models/products reachable through 🟢/🟡
-   channels; a 🔴 channel never feeds the shortlist, however strong.
-2. **Free first, strength second.** Free access first; strength decides the
-   order among those; low-cost options may follow, clearly priced.
-3. **Strength by evidence, not fame.** Quality claims come from live-fetched
-   leaderboards (Artificial Analysis, LMArena/Chatbot Arena, LiveBench) or
-   recent coverage — each with an as-of date. No fresh evidence → say
-   "free to use" and make no strength claim. A single-source entry makes no
-   strength claim at all.
-4. **Never cached.** Model versions turn over fast; rebuild the shortlist
-   from this run's evidence every time.
+1. **Safety is the gate.** Every seat picks from 🟢 / 🟡 channels only;
+   a 🔴-channel item never enters any seat.
+2. **Free first, strength second.** Free access first; strength decides
+   order within a tier; low-cost options may follow, clearly priced.
+3. **Strength by evidence, not fame.** Quality claims come from a live
+   leaderboard (Artificial Analysis / LMArena / OpenRouter `:free`)
+   with an as-of date. No fresh evidence → "free to use" and no strength
+   claim.
+4. **Never cached.** Rebuild the shortlist from THIS run's evidence.
+5. **EMPTY-timepoint fallback** (`{i18n:hot_alt_note}`) — same as before.
+6. **NEW badge** discipline — same as before (this-run cross-confirm +
+   `discovered_on` ≤ 7 days, tie-break only).
+7. **Form-blending guard (v2.9.6).** A seat's `get_*` verb and free-tier
+   facts must match its delivery form:
+   - Seat A may cite an API free tier (RPM/RPD/TPM), may NOT cite
+     consumer-app features.
+   - Seat B may cite the app's free model, may NOT cite API-side gifts
+     (e.g. a 智谱清言 seat must not carry "2000 万 tokens 礼包" — that is
+     BigModel/①'s gift, not 清言's; the canonical 2026-09-05 defect).
+   - Seat C may cite price / promo window, must carry its end-date.
 
-5. **EMPTY-TIMEPOINT fallback (graceful no-increment week).** When the radar
-   probe (`deal-hunting.md` §2.6) returns no new platform AND no promo AND no
-   model/price change in the last 7 days, never leave the increment promise
-   silent or fabricate one. Do all of: (a) state it plainly in the first
-   short sentence — 近 7 天无新平台、新活动或调价，本轮聚焦当前最强 free/cheap
-   实时短名单 (or {i18n:hot_alt_note}); (b) the shortlist itself still ships
-   with THIS-run verification (✓/~/⚠), never stale cache — a secondhand
-   costume of "stability" earns no ✓; (c) the leaderboard as-of date appears
-   next to strength figures as usual; (d) end with the standing invitation
-   that a later run (or /scan schedule) may catch the next window. Increment
-   value is industry-cadence-dependent: a quiet week ships verified
-   current-best, not fabricated news.
-6. **NEW badge (time-point increment, ≤7 days).** An entry carries the
-   {i18n:new_badge} flag only when ALL hold: (a) it was cross-confirmed
-   (G1/G1.5) THIS run; (b) its cache row carries a `discovered_on` ≤ 7 days
-   before today (`vendor-cache.md` schema 4) — a null/missing date NEVER
-   earns the badge; (c) first-ever run of an install (no cache baseline) shows
-   no NEW badges at all — nothing is "new" without a baseline. The badge is a
-   **tie-break and a flag, never a rank boost**: only among entries already
-   equal on tier, evidence-confidence, and score within ±1 does a NEW entry
-   list first; it never lifts an entry into the shortlist or above a stronger
-   non-NEW pick, and hype alone can never trigger it.
+**HTML template rendering** (v2.9.6): each `<li>` carries the seat's
+form chip (`<span class="form {{form}}">{{i18n:form_chip_*}}</span>`)
+between rank and name. The single `{{i18n:shortlist_title}}` value from
+`zh.json` / `en.json` covers the title for both personas.
 
-
-**best_pick eligibility (the {i18n:best_pick_headline} line and the close's
-{best} slot).** The pick must pass ALL three, or it is not the pick:
-① wears {i18n:badge_official} or {i18n:badge_cross} — a single-source ⚠ row
-can NEVER headline (the "尼日利亚区单源价上头条" defect); ② actionable for
-this user's region + payment/network reality; ③ is one of the numbered cards
-— the "回复编号" CTA must be answerable by the headline's own pick.
+**best_pick eligibility** — unchanged from v2.9.5: the pick must wear
+{i18n:badge_official} or {i18n:badge_cross}, be actionable for the user's
+region + payment/network reality, and be one of the numbered cards. The
+2026-09-05 defects (single-source ⚠ row on top, DeepSeek-form-blending)
+still fail.
 
 ---
 
@@ -233,8 +234,10 @@ Header block:
 {i18n:best_pick_headline} {the single best current pick — never bury the winner; must pass §1.1 eligibility}
 ```
 
-After the header: the shortlist (§1.1), then the three modules — expert order
-①→②→③, beginner order ②→①→③ (§0.5).
+After the header: the shortlist (§1.1, three seats — one per form), then the
+**three modules in FIXED order ① → ② → ③** (§0.5). Persona's job is done
+by the hero / shortlist order / module-② sec-sub / nav — NOT by reordering
+the numbered modules.
 
 **Module ① — {i18n:module_api_title}** (register → API key → wire into a
 tool): ranked cards per §4, 4–8 candidates. Every row carries a real link
@@ -260,7 +263,9 @@ the grey option is an informed second choice, never the headline:
 
 1. **{i18n:shelf_official}** 🟢 — education / annual / first-year / live promo
    windows (re-verified this run).
-2. **{i18n:shelf_bundle}** 🟢/🟡 — carrier & partner bundles, eligibility
+2. **{i18n:shelf_bundle}** 🟢/🟡 — partner bundles: telecom carriers · banks
+   (credit-card perks) · payment platforms (Alipay/WeChat/UnionPay
+   campaigns) · device makers · broadband / retail memberships. Eligibility
    stated (plan / region / new-customer).
 3. **{i18n:shelf_region}** 🟡 — cross-region prices; region tag (🇹🇷 🇵🇭 🇵🇰 …),
    the §6 risk banner **before** any "how to", and a one-line
@@ -290,15 +295,30 @@ Plus:
   template's nav chips, filter chips, eyebrow, disclaimer, close label, tier
   legend, score legend and hero-KPI labels are ALL i18n tokens; never
   hand-write chrome wording. Repeat the marked blocks (shortlist lines, cards,
-  notes, glossary terms). Hero KPIs: {i18n:hero_count_label} = number of
-  ranked cards THIS run (never an invented total); {i18n:hero_best_label} =
-  the best pick's name.
+  notes, glossary terms). Hero KPIs: {i18n:hero_count_label} = **exact sum of
+  the three module counts this run** (`{{api_count}}` + `{{apps_count}}` +
+  `{{member_count}}`); count AFTER composing all cards, BEFORE writing the
+  hero, so the two never disagree (the v2.9.5 "23 vs 25" defect); {i18n:hero_best_label}
+  = the best pick's name.
 - Shortlist source references render as **plain text + date** (no third-party
   `<a>`); the only clickable links on the whole page are official domains
-  (registry whitelist).
+  (registry whitelist). **v2.9.6:** the rule extends to `<button>`-styled
+  "ghost" CTAs — a third-party price tracker may never appear as a
+  clickable element (the v2.9.5 subprice.org / opentherank.com defect);
+  use the template's `.srcref` plain-text style for "参考来源" notes.
 - Every card carries the data attributes the template's filter chips rely
-  on: `data-reach` (direct|proxy|na) · `data-card` (yes|no credit card) ·
-  `data-tier` (green|yellow|red).
+  on. **v2.9.6 anti-ambiguity:** the `data-nocard` attribute replaces the
+  ambiguous `data-card` — values are `yes | no` where `yes` = "no credit
+  card needed" (the attribute's value matches the filter's predicate in
+  the template: `c.dataset.nocard === 'yes'` → shown under
+  {i18n:filter_direct}'s sibling chip "免信用卡"). Pills and data
+  attributes must agree: a card displaying {i18n:chip_nocard} must carry
+  `data-nocard="yes"`, displaying {i18n:chip_card} must carry
+  `data-nocard="no"` — checklist item, no exceptions (the v2.9.5 module-②
+  "missing chip + inverted value" defect). `data-reach` values: `direct |
+  proxy | na` — a card with no live reach evidence carries `data-reach="na"`
+  and **NO reach pill** (never the improvised "可能需要工具" euphemism —
+  the no-tag rule from §1 + the self-check anti-regression line are binding).
 - Evidence pills use the plain-word badges (`scoring.md` §2.1); the reach
   pill uses {i18n:reach_direct} / {i18n:reach_proxy} per `deal-hunting.md`
   §3.2 (add the template's "blocked" pill style when the user's own node is
@@ -308,6 +328,32 @@ Plus:
   to the CONSUMER entry (C7 whitelist), never the developer console; then a
   one-phrase howto hint. Fill the `#apps` section (nav chip
   {i18n:nav_apps}) whenever module ② has candidates.
+- **Radar finds without an official domain (v2.9.6).** A radar-discovered
+  vendor with no `vendor-registry.md` official entry MUST render as plain
+  name + a textual access path ("入口：App 内领取" / "via 灵犀·晓伴 App"),
+  NEVER as a news / aggregator / third-party URL CTA (the v2.9.5
+  stdaily.com-as-CTA defect). If a single news article is the only
+  evidence, that is corroboration, not an entry point — do not promote
+  it to `<a>`.
+- **Card numbering is global (v2.9.6).** Rank numbers are 1..N across the
+  whole report in render order (① then ② then ③), never per-module
+  restarts. The "回复编号" CTA in the close line (§8) must be answerable
+  for the best pick's exact rank without ambiguity (the v2.9.5
+  three-modules-all-starting-at-1 defect).
+- **Slot values never carry braces (v2.9.6).** Every `{slot}` filled from
+  an i18n string substitutes a clean value, no braces around it:
+  `{risk}`→`合规/封号/退款`, never `{合规/封号/退款}`. The only braces on
+  the finished page are template placeholders that have ALL been replaced
+  (zero `{{…}}` and zero unpaired `{…}` left). User-facing output must
+  never contain raw `{i18n:…}` or `{slot}` syntax (the v2.9.5 banner
+  `{合规/封号/退款}` defect).
+- **Footer attribution (v2.9.6).** Fill from `assets/branding.md` (the
+  single source of truth for author / repo / license / version / star
+  CTA). The template's footer block is filled with: author line
+  {i18n:author_credit} + repo CTA {i18n:repo_cta} linking to `{{repo_url}}`.
+  This block is part of the template (single-file, offline-friendly) and
+  must NOT be removed by hosts that want "cleaner footers" — it is the
+  provenance the product carries when shared / screenshotted.
 - Include the glossary: plain-word explanations of every jargon term used on
   the page — the audience is non-technical.
 - The file must stay self-contained: no external fonts/scripts/CDNs, no
@@ -320,9 +366,11 @@ Plus:
   `{{apps_count}}` / `{{member_count}}` = card counts per module ①②③ this
   run · `{{note_title}}`+`{{note_text}}` / `{{apps_note_title}}`+
   `{{apps_note_text}}` / `{{free_alt_note_title}}`+`{{free_alt_note_text}}`
-  = per-section one-line notes (empty shelf / caveats). Card-level slots
-  ({{name}} {{deal}} {{score}} {{source_label}} …) follow the marked card
-  block comments in the template itself.
+  = per-section one-line notes (empty shelf / caveats) · `{{repo_url}}` /
+  `{{skill_version}}` = attribution values from `assets/branding.md`.
+  Card-level slots ({{name}} {{deal}} {{score}} {{source_label}} …) follow
+  the marked card block comments in the template itself; rank uses the
+  **global** number 1..N as above.
 
 ---
 
@@ -403,33 +451,46 @@ rules; golden cases and spot checks in `self-check.md` reference items here
 by position instead of restating them.)
 
 ★ □ Line budgets: LIGHT ≤22 content lines; three-module FULL uses the HTML report (text hosts: §1 compact cards, ≤80 content lines)
-□ Persona detected and rendering matches (§0.5); `/simple` `/pro` override honored
+★ □ Module render order in FULL is ① → ② → ③ (FIXED; persona does NOT reorder numbered modules — §0.5)
+★ □ Shortlist is three seats (one per delivery form); persona shapes order/wording only; no seat is silently filled with another form's evidence; empty seats render a one-line honest note (§1.1)
+★ □ Hero KPI count == api_count + apps_count + member_count for this run (count AFTER composing, BEFORE writing hero — the v2.9.5 "23 vs 25" defect)
+★ □ Card rank numbers are global (1..N across modules); the "回复编号" CTA can be answered without ambiguity
+★ □ Card data attributes match visible pills: `data-nocard="yes"` ↔ {i18n:chip_nocard} pill, `data-nocard="no"` ↔ {i18n:chip_card} pill; module ②③ cards missing the chip fail (v2.9.6)
+★ □ Every reach pill has live evidence; no improvised "可能需要工具" / "可达性未验证" reach labels — no-tag = no evidence is the rule (§1 + self-check anti-regression line)
+★ □ Slot values never carry braces; no `{slot}` or `{i18n:…}` syntax reaches the user (v2.9.6)
+★ □ No third-party domain renders as a clickable element anywhere (no `<a>`, no `<button>`-styled CTA); "参考来源" notes use the template's `.srcref` plain-text style
+★ □ Radar finds without a registry official entry render as plain name + textual access path (no news/aggregator URL as CTA)
+★ □ Footer attribution block is present (author credit + repo star CTA) and filled from `assets/branding.md` — never stripped by hosts
+★ □ Person detected and rendering matches (§0.5); `/simple` `/pro` override honored
 ★ □ Every deal line: as-of date + real link + evidence badge (plain words)
 ★ □ Line-1 / CTA link's domain == a `vendor-registry.md` official domain; no search-result href; membership links official only; HTML shortlist sources plain-text
-□ Every card carries the {i18n:chip_nocard|chip_card} chip; beginner persona shows {i18n:human_units} quotas
-□ Any "model M free on platform P" claim cleared `deal-hunting.md` §3.3 (a catalog sighting this run), else not printed
-□ Scores follow `scoring.md` §1.1 anchors; N/A dims annotated ("估n维"); {i18n:legend_score} present when scores show
-□ Labels verbatim from i18n — no improvised synonyms, no internal jargon (契约/维度/权重/新鲜度/归一化) in user text
-□ Shortlist rendered first (LIGHT & FULL); LIGHT led by {i18n:best_pick_headline}; no 🔴-channel model in it; every strength claim dated; single-source entries make no strength claim
-□ Reachability tags only with §3.2 evidence (live test or ≥2 community reports); no blanket "needs proxy"; domestic not presumed direct; no jargon labels
-□ Scope label matches what was actually hunted; `{region}` rendered via the display map
-□ Three modules kept separate — no card/line mixes delivery forms; {i18n:get_use} vs {i18n:get_key} vs {i18n:membership} each only in its own module (DeepSeek defect guard)
-□ Module ② cards state the free model version PER surface (网页/电脑/App), newest/strongest first, dated; consumer-entry links only
-□ best_pick passes §1.1 eligibility (verified badge + actionable + is a numbered card)
-□ Module ③ in three shelves, official discounts first; empty shelf stated; every cross-region card has {i18n:worst_case} + the §6 banner before any steps
-□ LIGHT with ≥4 queries spent ONE slot on the three-state radar probe (`deal-hunting.md` §2.6: promo → change → new-provider by cache state, graceful fallback, never extra queries)
-★ □ Closing = scope-matched i18n sentence + ONE {best} slot (two lines) + at most ONE disclosure line (§8.1)
-□ No bare "(估算)/(estimated)" or unexplained symbols anywhere user-facing
-□ Coverage line present (FULL); empty classes stated (incl. "search failed" ≠ "nothing found"), never silently dropped
+★ □ Every card carries the {i18n:chip_nocard|chip_card} chip; beginner persona shows {i18n:human_units} quotas
+★ □ As-of dates are day-level (YYYY-MM-DD); month/year-only evidence dates are flagged (e.g. "2026-06 · 来源粒度：月") or upgraded
+★ □ Module-end `note` blocks obey the same freshness contract as cards — no numbers without an as-of date
+★ □ Any "model M free on platform P" claim cleared `deal-hunting.md` §3.3 (a catalog sighting this run), else not printed
+★ □ Scores follow `scoring.md` §1.1 anchors; N/A dims annotated ("估n维"); {i18n:legend_score} present when scores show
+★ □ Labels verbatim from i18n — no improvised synonyms, no internal jargon (契约/维度/权重/新鲜度/归一化) in user text
+★ □ Shortlist rendered first (LIGHT & FULL); LIGHT led by {i18n:best_pick_headline}; no 🔴-channel model in it; every strength claim dated; single-source entries make no strength claim
+★ □ Reachability tags only with §3.2 evidence (live test or ≥2 community reports); no blanket "needs proxy"; domestic not presumed direct; no jargon labels
+★ □ Scope label matches what was actually hunted; `{region}` rendered via the display map
+★ □ Three modules kept separate — no card/line mixes delivery forms; {i18n:get_use} vs {i18n:get_key} vs {i18n:membership} each only in its own module (DeepSeek defect guard)
+★ □ Module ② cards state the free model version PER surface (网页/电脑/App), newest/strongest first, dated; consumer-entry links only
+★ □ Shortlist form-blending guard: seat A (API) carries API-side facts only; seat B (app) carries app-side facts only; seat C (membership) carries price + end-date (§1.1 rule 7)
+★ □ best_pick passes §1.1 eligibility (verified badge + actionable + is a numbered card)
+★ □ Module ③ in three shelves, official discounts first; empty shelf stated; every cross-region card has {i18n:worst_case} + the §6 banner before any steps
+★ □ LIGHT with ≥4 queries spent ONE slot on the three-state radar probe (`deal-hunting.md` §2.6: promo → change → new-provider by cache state, graceful fallback, never extra queries)
+★ □ Closing = scope-matched i18n sentence + ONE {best} slot (two lines) + at most ONE disclosure line (§8.1) + for plain-text hosts, one allowed attribution line (author credit + repo CTA — see §8.2)
+★ □ No bare "(估算)/(estimated)" or unexplained symbols anywhere user-facing
+★ □ Coverage line present (FULL); empty classes stated (incl. "search failed" ≠ "nothing found"), never silently dropped
 ★ □ Tier order respected: 🟢 → 🟡 → 🔴; no 🔴 above 🟢/🟡 on price alone
    (every {i18n:new_badge} entry: this-run cross-confirm + ≤7-day discovered_on; null date never badged — §1.1 rule 5)
-□ EMPTY week handled per §1.1 rule 5 + §8.1 item 6: plain {i18n:hot_alt_note} in the lead, shortlist still THIS-run verified (never cache-warm ✓), leaderboard as-of kept, /scan invitation; no fabricated increment; UPDATED variant follows the same ≤7-day discovered_on bar
-□ Unverified items labeled {i18n:badge_unverified}; stale vendors say "{i18n:policy_changed}"
-□ No ✓ unless an official surface was reached this run (`deal-hunting.md` §3.1); secondhand-fed outputs carry the global disclosure line (§8.1)
-□ Prices normalized per `scoring.md` §0 (memberships per §0.6, USD + local in parens); estimates flagged via badge, not jargon
-□ No number printed from registry/cache without this run's live verification
-□ Persistence hard gate: the cache write happened BEFORE composing the send; "未持久化" is only allowed with a concrete reason (host read-only / nothing cross-confirmed / write error) — a bare "not persisted" fails
-□ Disclosure line (§8.1): cache state (with reason if not persisted); ≤1 promo note; dropped candidates mentioned in a phrase
+★ □ EMPTY week handled per §1.1 rule 5 + §8.1 item 6: plain {i18n:hot_alt_note} in the lead, shortlist still THIS-run verified (never cache-warm ✓), leaderboard as-of kept, /scan invitation; no fabricated increment; UPDATED variant follows the same ≤7-day discovered_on bar
+★ □ Unverified items labeled {i18n:badge_unverified}; stale vendors say "{i18n:policy_changed}"
+★ □ No ✓ unless an official surface was reached this run (`deal-hunting.md` §3.1); secondhand-fed outputs carry the global disclosure line (§8.1)
+★ □ Prices normalized per `scoring.md` §0 (memberships per §0.6, USD + local in parens); estimates flagged via badge, not jargon
+★ □ No number printed from registry/cache without this run's live verification
+★ □ Persistence hard gate: the cache write happened BEFORE composing the send; "未持久化" is only allowed with a concrete reason (host read-only / nothing cross-confirmed / write error) — a bare "not persisted" fails
+★ □ Disclosure line (§8.1): cache state (with reason if not persisted); ≤1 promo note; dropped candidates mentioned in a phrase
 
 Golden regression cases: `references/self-check.md`.
 
@@ -485,5 +546,32 @@ Exactly one short line, carrying in order (omit empty parts):
    stale cache) with leaderboard as-of dates; close with the standing note
    that a later run (or /scan) may catch the next window. Never dress up a
    stable pick as news, and never fabricate an increment.
+
+### 8.2 The ONE attribution line (v2.9.6) — author / repo, on every deliverable
+
+The skill ships with provenance: author, repository, license, star CTA —
+all from the single source of truth at `assets/branding.md`. Every output
+carries this attribution so the product is discoverable when shared or
+screenshotted. The HTML report's footer block is filled from the same
+source; plain-text hosts add **exactly one** attribution line after the §8.1
+disclosure, in the user's language:
+
+```
+{i18n:author_credit} · {i18n:repo_cta} → {repo_url}
+```
+
+Rules:
+- The line is **mandatory** for every output (LIGHT, FULL, COMPARE, BUY
+  reply, and any shareable artifact) — checklist item, no carve-out.
+- It is the **only sanctioned addition** to the close, on top of §8.1.
+  Nothing else joins the output; `/help` carries the rest.
+- The {repo_url} slot comes from `assets/branding.md` — never invent a URL
+  in the run. The two i18n tokens ship with the skill; missing tokens
+  fall back to the English values from `en.json` per §0 rule 3, never to
+  improvised wording.
+- Plain-text hosts that already wrap the reply in a host-specific
+  attribution footer (some chat agents) MAY omit this line, but the run
+  must state the omission in the disclosure line (item 7 of §8.1, with a
+  concrete reason) — silent omission fails the checklist.
 
 Nothing else joins the output; `/help` carries the rest.

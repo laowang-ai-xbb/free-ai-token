@@ -32,18 +32,23 @@ Accept when:
 
 Accept when:
 - the persona-matched shortlist renders between the header and the first
-  module (`ranking-template.md` §1.1); no 🔴-channel item in it; every
-  strength claim dated;
-- **three modules render as separate blocks** — ① API · ② 免费 AI 产品 ·
-  ③ 会员 (beginner persona orders ②→①→③); no card/line mixes delivery
-  forms; coverage line present; any empty class/module stated, never
-  silently dropped ("search failed" ≠ "nothing found", F6);
+  module (`ranking-template.md` §1.1, three seats — one per delivery form);
+  no 🔴-channel item in it; every strength claim dated; empty seats
+  rendered as one-line honest notes (never filled with another form's
+  evidence);
+- **three modules render as separate blocks, in FIXED order ① → ② → ③**
+  (`ranking-template.md` §0.5) — person does NOT reorder numbered modules;
+  persona care lives in the hero / shortlist order / module-② sec-sub / nav;
+  no card/line mixes delivery forms; coverage line present; any empty
+  class/module stated, never silently dropped ("search failed" ≠
+  "nothing found", F6);
 - module ② cards state the free model version PER surface (网页/电脑/App),
   newest/strongest first, dated; links go to consumer entries (C7 whitelist);
-- module ③ renders in three shelves, **official discounts first**, bundles
-  second, cross-region last; every cross-region card carries
-  {i18n:worst_case} + prices normalized to USD with the local price in
-  parentheses (`scoring.md` §0.6); an empty shelf is stated;
+- module ③ renders in three shelves, **official discounts first**, partner
+  bundles (carrier / bank / payment / device) second, cross-region last;
+  every cross-region card carries {i18n:worst_case} + prices normalized to
+  USD with the local price in parentheses (`scoring.md` §0.6); an empty
+  shelf is stated;
 - 4–8 cards per module ①, tier order 🟢→🟡→🔴, plain-word evidence badge on
   every card (`scoring.md` §2.1);
 - risk banner precedes any 🟡/🔴 steps; region-deal caveats before steps;
@@ -148,10 +153,17 @@ Accept when:
 - every card name / CTA link's domain appears in `vendor-registry.md`'s
   official-link column; zero search-result URLs;
 - membership cards (chat + HTML) link only to official subscription pages;
-  third-party price sites appear as plain text + date, never as `<a>`;
+  third-party price sites appear as **plain text + date** (template
+  `.srcref` style), never as `<a>` and never as `<button>`-styled ghost
+  CTAs (the v2.9.5 subprice.org / opentherank.com defect);
 - the HTML shortlist carries no third-party anchor;
+- a radar-discovered vendor with no `vendor-registry.md` official entry
+  renders as plain name + textual access path (e.g. "入口：App 内领取")
+  — never a news/aggregator URL as the CTA (the v2.9.5 stdaily.com-as-CTA
+  defect);
 - the output ends with the two-line close + at most ONE disclosure line
-  (§8.1: cache state, global unreachable note, ≤1 promo, dropped candidates).
+  (§8.1) + at most ONE attribution line (§8.2: author + repo CTA from
+  `assets/branding.md`).
 
 ## S10 — BUY: "帮我买菲律宾区 ChatGPT Plus"
 
@@ -336,3 +348,133 @@ own bank card (issuing country CN), wants the App Store route.
 - Claiming the purchase will succeed, or skipping the confirmation stop
   (§3) because the user sounds rushed.
 - Recommending gift-card resellers in any phrasing.
+
+---
+
+## v2.9.6 — the rendering-purity golden cases
+
+These five cases lock down the contract enforcement gaps that the v2.9.5
+audit surfaced. Any future change to the rendering pipeline must keep them
+green. They are the regression tests for the *fill* of the contract, not
+for the contract's content (which lives in `ranking-template.md`).
+
+### S15 — HERO KPI == Σ module counts (the "23 vs 25" defect)
+
+**Input:** FULL zh hunt, this run yields module ① = 6 cards, module ② = 10
+cards, module ③ = 9 cards (the 2026-09-07 test shape).
+
+**Must:**
+- After composing all three modules, count the cards and write
+  `{{hero_1_v}}` = `{{api_count}} + {{apps_count}} + {{member_count}}` =
+  **25**. Writing the hero BEFORE composing the modules is a checklist
+  failure (the v2.9.5 "23" was the count-as-of-the-headline-write moment,
+  before the module ② third card was added).
+- The shortlist counts as its own seat-set — it does NOT feed the hero KPI
+  (it lives in a separate `{{shortlist_note}}` slot).
+
+**Never:** any invented total; any "rounded for display" number; any hero
+that disagrees with the section-span counts at the end of the run.
+
+### S16 — NO BRACES LEAK (the "{合规/封号/退款}" defect)
+
+**Input:** FULL zh hunt, cross-region cards in module ③ need
+{i18n:safety_banner} and {i18n:worst_case} filled with concrete values.
+
+**Must:**
+- A `{{i18n:safety_banner}}` filled with `{item}` = "跨区低价" and
+  `{risk}` = "合规/封号/退款" renders as the **plain string** "⚠ 跨区低价
+  存在合规/封号/退款风险…" — the values substitute CLEAN, no braces around
+  them.
+- A `{{i18n:worst_case}}` filled with `{case}` = "订阅可能被取消、钱可能
+  拿不回、账号可能被标记" renders as "最坏情况：订阅可能被取消、钱可能拿
+  不回、账号可能被标记" — again, no braces.
+- Page ships with **zero** unpaired `{` and zero `{{` after the fill.
+- The only `{{…}}` left on the page is "zero", per the existing
+  filling-contract rule.
+
+**Never:** any `{slot}` or `{i18n:…}` syntax visible to the user; any
+template internals leaking through the fill.
+
+### S17 — GLOBAL CARD NUMBERING (the "回复编号 1–6" ambiguity)
+
+**Input:** FULL zh hunt, three modules each having multiple cards.
+
+**Must:**
+- The {{rank}} on each `<article class="card">` is **globally unique**
+  1..N in render order: module ① cards occupy 1..(api_count), module ②
+  cards occupy the next range, module ③ the last — never per-module
+  restarts.
+- The `{{i18n:footer_next}}` close line's example ("如「1」→ 带你去
+  {best}") references a number that EXISTS exactly once on the page, and
+  the {best} slot is that card's name.
+- For the test data shape: the best_pick is DeepSeek 网页/App; it has a
+  unique global rank, and the close line's "1" example refers to that
+  exact rank.
+
+**Never:** per-module renumbering that makes the "回复编号" CTA ambiguous;
+a close-line example that points to a non-existent rank.
+
+### S18 — DATA-ATTRIBUTE / PILL CONSISTENCY (the v2.9.5 "免信用卡" + data-card="yes" module-② gap)
+
+**Input:** FULL report, every card in every module.
+
+**Must:**
+- A card showing the {i18n:chip_nocard} pill carries `data-nocard="yes"`
+  (the renamed, anti-ambiguous attribute — ranking-template §2). A card
+  showing the {i18n:chip_card} pill carries `data-nocard="no"`.
+- The data-nocard="yes" attribute is also held by every module ② card
+  whose signup needs no card (e.g. DeepSeek 网页 — sign in with phone/email,
+  no card) — module ②③ cards in the v2.9.5 test output MISSED this chip
+  entirely, leaving both the visible pill and the data attribute broken.
+- The filter chips in the HTML filterbar work as expected: clicking
+  "免信用卡" (`{i18n:filter_direct}`'s sibling chip
+  {i18n:chip_nocard}) shows only cards with `data-nocard="yes"`.
+
+**Never:** a card that shows one chip and carries a contradicting
+data-nocard; any module's cards missing the chip (the v2.9.5 module ②
+defect).
+
+### S19 — REACH NO-TAG RULE (the v2.9.5 "可能需要工具" euphemism)
+
+**Input:** FULL hunt where the user's region is unknown / not specified
+and the run has no live reachability evidence for several cards.
+
+**Must:**
+- Cards without live §3.2 evidence carry `data-reach="na"` and **NO**
+  reach pill (`{i18n:reach_direct}` or `{i18n:reach_proxy}`). No third
+  "unchecked" token is added to i18n — the no-tag rule is the third
+  state.
+- No card displays the improvised "可能需要工具" / "可达性未验证" / "未
+  确认" / "未核实" wording as a reachability label — those are jargon
+  euphemisms that the no-tag rule explicitly forbids (see anti-regression
+  line "No blanket proxy labels" below).
+- Region framing applies: a non-CN run contains no "需代理" advice; a CN
+  run uses {i18n:reach_proxy} only with live evidence per `deal-hunting.md`
+  §3.2.
+
+**Never:** inventing a "soft" reach label to fill a gap that the no-tag
+rule says must stay empty; a run that ships a reach pill without
+corroborating evidence.
+
+### S20 — ATTRIBUTION PROVENANCE (§8.2 + footer block)
+
+**Input:** ANY output (LIGHT, FULL, COMPARE, BUY reply — chat OR HTML).
+
+**Must:**
+- The HTML report footer contains the `{{i18n:author_credit}}` text and
+  the `{{i18n:repo_cta}}` link to `{{repo_url}}` (filled from
+  `assets/branding.md`, NOT invented at run time). Both the
+  `{{i18n:author_credit}}` and `{{i18n:repo_cta}}` strings come from
+  `references/i18n/{lang}.json`.
+- Plain-text chat output ends with the §8.2 attribution line
+  (`{i18n:author_credit} · {i18n:repo_cta} → {repo_url}`) — the line is
+  **mandatory**; the only carve-out is a host that already wraps the
+  reply in its own attribution footer, and the run must state that
+  omission in the §8.1 disclosure line.
+- `assets/branding.md` is the single source of truth: changing the repo
+  URL means changing that file, not the template or README, and both
+  must stay in sync.
+
+**Never:** stripped attribution in a "cleaner" host-rendered variant;
+invented repo URLs at run time; attribution block missing in the
+HTML share of a screenshot.
